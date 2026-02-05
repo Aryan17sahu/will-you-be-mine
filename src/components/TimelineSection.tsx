@@ -5,39 +5,39 @@ interface TimelineItem {
   date: string;
   title: string;
   description: string;
-  imagePlaceholder?: boolean;
+  image?: string;
 }
 
 const timelineData: TimelineItem[] = [
   {
     date: "When We Met",
     title: "The Beginning",
-    description: "Add your story of how you first met...",
-    imagePlaceholder: true,
+    description: "Remember when we first met in Bangalore..",
+    image: "/timeline/placeholder.jpg",
   },
   {
     date: "First Date",
     title: "Our First Adventure",
-    description: "Describe your first date together...",
-    imagePlaceholder: true,
+    description: "When we went to Gokarna...",
+    image: "/timeline/image1.png",
   },
   {
     date: "Special Moment",
     title: "When I Knew",
-    description: "Share that special moment when you knew...",
-    imagePlaceholder: true,
+    description: "When i realised you are the one❤️...",
+    image: "/timeline/image2.png",
   },
   {
     date: "Our Journey",
     title: "Growing Together",
-    description: "Talk about your journey together...",
-    imagePlaceholder: true,
+    description: "You teaching me about mountains...",
+    image: "/timeline/image3.png",
   },
   {
     date: "Today",
     title: "Writing Our Story",
-    description: "And now, a very special question awaits...",
-    imagePlaceholder: true,
+    description: "When we met after Long time in Delhi...",
+    image: "/timeline/image4.png",
   },
 ];
 
@@ -63,14 +63,13 @@ const TimelineCard = ({ item, index, isLeft }: { item: TimelineItem; index: numb
           {item.title}
         </h3>
         
-        {item.imagePlaceholder && (
-          <div className="w-full h-48 bg-muted rounded-xl mb-4 flex items-center justify-center border-2 border-dashed border-border group hover:border-primary/50 transition-colors cursor-pointer">
-            <div className="text-center text-muted-foreground">
-              <Camera className="w-10 h-10 mx-auto mb-2 group-hover:text-primary transition-colors" />
-              <p className="text-sm">Add your photo here</p>
-            </div>
-          </div>
-        )}
+         {item.image && (
+  <img
+  src={item.image}
+  alt={item.title}
+  className="w-full h-auto max-h-80 object-contain rounded-xl mb-4 bg-muted"
+/>
+)}
         
         <p className="text-muted-foreground leading-relaxed">
           {item.description}

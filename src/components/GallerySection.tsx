@@ -1,22 +1,49 @@
 import { motion } from "framer-motion";
 import { Camera, Heart } from "lucide-react";
 
-const galleryPlaceholders = [
-  { size: "large", label: "Our favorite memory" },
-  { size: "small", label: "Sweet moment" },
-  { size: "small", label: "Adventure together" },
-  { size: "medium", label: "Date night" },
-  { size: "medium", label: "Celebration" },
-  { size: "small", label: "Everyday love" },
+const galleryItems = [
+  {
+    size: "large",
+    label: "Our favorite memory",
+    image: "/gallery/favorite.png",
+  },
+  {
+    size: "small",
+    label: "Sweet moment",
+    image: "/gallery/sweet.png",
+  },
+  {
+    size: "small",
+    label: "Adventure together",
+    image: "/gallery/adventure.png",
+  },
+  {
+    size: "medium",
+    label: "Date night",
+    image: "/gallery/datenight.jpg",
+  },
+  {
+    size: "medium",
+    label: "Celebration",
+    image: "/gallery/celebration.png",
+  },
+  {
+    size: "small",
+    label: "Everyday love",
+    image: "/gallery/everyday.png",
+  },
 ];
 
-const GalleryItem = ({ 
-  size, 
-  label, 
-  index 
-}: { 
-  size: string; 
-  label: string; 
+
+const GalleryItem = ({
+  size,
+  label,
+  image,
+  index,
+}: {
+  size: string;
+  label: string;
+  image: string;
   index: number;
 }) => {
   const sizeClasses = {
@@ -33,13 +60,13 @@ const GalleryItem = ({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <div className="w-full h-full bg-card rounded-2xl border-2 border-dashed border-border flex items-center justify-center overflow-hidden group-hover:border-primary/50 transition-all duration-300 cursor-pointer shadow-md hover:shadow-xl">
-        <div className="text-center p-4">
-          <Camera className="w-12 h-12 mx-auto mb-3 text-muted-foreground group-hover:text-primary transition-colors" />
-          <p className="text-sm text-muted-foreground font-medium">{label}</p>
-          <p className="text-xs text-muted-foreground/60 mt-1">Click to add photo</p>
-        </div>
-      </div>
+      <div className="w-full h-full bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+  <img
+    src={image}
+    alt={label}
+    className="w-full h-full object-contain bg-muted"
+  />
+</div>
       
       {/* Decorative heart on hover */}
       <motion.div
@@ -72,14 +99,15 @@ const GallerySection = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-fr">
-          {galleryPlaceholders.map((item, index) => (
-            <GalleryItem
-              key={index}
-              size={item.size}
-              label={item.label}
-              index={index}
-            />
-          ))}
+        {galleryItems.map((item, index) => (
+  <GalleryItem
+    key={index}
+    size={item.size}
+    label={item.label}
+    image={item.image}
+    index={index}
+  />
+))}
         </div>
 
         <motion.p
@@ -89,7 +117,7 @@ const GallerySection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          💕 Replace these placeholders with your favorite photos together
+          {/* 💕 Replace these placeholders with your favorite photos together */}
         </motion.p>
       </div>
     </section>
